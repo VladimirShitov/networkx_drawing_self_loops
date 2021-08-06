@@ -80,4 +80,5 @@ You can see at least 2 problems on this plot:
 ```pip install -r requirements.txt```
 
 Note that you need *pandas* only to run some examples. If you want to use only the code for the chord diagram, *pandas* is not necessary.
+
 2. Use code from [drawing.py](drawing.py) or check [examples.py](examples.py) to see some code examples
