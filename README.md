@@ -45,12 +45,15 @@ fig, ax = plt.subplots(figsize=(10, 10))
 
     fig.savefig("images/1_simple_graph.png")
 ```
+
 ![Simple graph](images/1_simple_graph.png)
 
 Much better, huh? Let's have a look at the real world example. This is cells communication network from single-cell RNA-seq data. What you get by vanilla networkx:
+
 ![Cells communication networkx](images/3_nx_cells_network.png)
 
 And by code from this repo:
+
 ![Cells communication](images/2_cells_network.png)
 
 Of course, you can make networkx plots with colors and arc curvy edges too. But notice, how vanilla networkx draws self-loops. They always have the same directions. While the code from this repo draws them from the center of the layout. More than that, it is possible to control self-loops' width and length. And, if necessary, draw them inside the polygon. Check documentation of the function `draw_self_loop()` from [drawing.py](drawing.py)
