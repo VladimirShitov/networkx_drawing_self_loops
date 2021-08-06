@@ -6,20 +6,22 @@ import pandas as pd
 from drawing import chord_diagram
 
 
-def simple_example():
+def networkx_drawing_example(graph):
     fig, ax = plt.subplots(figsize=(10, 10))
-    graph = nx.DiGraph(
-        np.array([
-            [1, 2, 1],
-            [1, 0, 3],
-            [1, 1, 3]
-        ])
-    )
+
+    nx.draw_circular(graph, ax=ax)
+    ax.set_title("A simple graph drawn with networkx")
+
+    fig.savefig("images/0_simple_graph_networkx.png")
+
+
+def simple_example(graph):
+    fig, ax = plt.subplots(figsize=(10, 10))
 
     ax = chord_diagram(graph, ax)
     ax.set_xlim(-1.5, 1.5)
     ax.set_ylim(-1.5, 1.5)
-    ax.set_title("A simple graph")
+    ax.set_title("A simple graph drawn better")
 
     fig.savefig("images/1_simple_graph.png")
 
@@ -78,9 +80,17 @@ def not_circular_layout_example():
 if __name__ == "__main__":
     np.random.seed(42)
 
-    simple_example()
+    graph = nx.DiGraph(
+        np.array([
+            [1, 2, 1, 3, 5],
+            [1, 0, 3, 0, 0],
+            [1, 1, 3, 0, 1],
+            [0, 0, 2, 0, 1],
+            [1, 1, 1, 1, 1]
+        ])
+    )
+
+    networkx_drawing_example(graph)
+    simple_example(graph)
     cells_network_example()
     not_circular_layout_example()
-
-
-
