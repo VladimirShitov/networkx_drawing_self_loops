@@ -63,6 +63,7 @@ This repository can become better. If people use it, I will definitely continue 
 If you want to contribute, here are some ideas of what can be done better:
 * **Make code more flexible**. In the current version, a lot of things (e. g. plot colors, edges curvature) are hardcoded inside the functions from [drawing.py](drawing.py). It would be great to make them parameters of the functions.
 * **Make chord_diagram a PyPi package**. It would be great to do a simple `pip install` *package_name* instead of copy-pasting code from this repo
+* **Write some tests**. It is not simple to automatically test plots, as they are mostly evaluated visually. But it is definitely a good idea to test some math related functions from [drawing.py](drawing.py).  
 * **Nicely draw self-loops in a complicated layout**. For now, self-loops look nicely if the graph has circular layout centered around (0, 0). In more complicated graphs, you will most likely get ugly plots. For example, this is a graph with Kamada-Kawai layout:
 ![Not circular layout](images/4_not_circular_layout.png)
 
