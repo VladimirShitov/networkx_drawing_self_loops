@@ -106,7 +106,6 @@ def draw_self_loop(
     path = MplPath(verts, codes)
     patch = patches.FancyArrowPatch(
         path=path,
-        facecolor='none',
         lw=linewidth,
         arrowstyle="-|>",
         color=color,
@@ -199,5 +198,15 @@ def draw_graph_edges(graph: nx.graph, pos: dict, ax: plt.Axes) -> plt.Axes:
                 arc_radius=0.1
             )
             edges_to_draw.remove(reverse_edge)
+
+    return ax
+
+
+def chord_diagram(graph: nx.Graph, ax: Optional[plt.Axes] = None) -> plt.Axes:
+    pos = nx.circular_layout(graph, center=(0, 0))
+
+    nx.draw_networkx_nodes(graph, pos, ax=ax)
+    draw_graph_edges(graph, pos, ax)
+    nx.draw_networkx_labels(graph, pos=pos, font_weight="bold", ax=ax)
 
     return ax
