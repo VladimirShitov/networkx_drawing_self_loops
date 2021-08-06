@@ -180,6 +180,7 @@ def draw_graph_edges(graph: nx.graph, pos: dict, ax: plt.Axes) -> plt.Axes:
 
         if edge[0] == edge[1]:  # By default, networkx doesn't draw self loops correctly
             draw_self_loop(point=pos[edge[0]], ax=ax, linewidth=edge_weights[edge])
+            edges_to_draw.remove(edge)
             continue
 
         draw_graph_edge(graph, pos, edge, edge_weight=edge_weights[edge], ax=ax, color="pink")
