@@ -41,8 +41,10 @@ def orthogonal_vector(point: np.array, width: float,
     Array with x and y coordinates of the vector, which is orthogonal to the vector
     from (0, 0) to the `point`
     """
+    EPSILON = 0.000001
+
     x = width
-    y = -x * point[0] / point[1]
+    y = -x * point[0] / (point[1] + EPSILON)
 
     ort_vector = np.array([x, y])
 
