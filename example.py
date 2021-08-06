@@ -15,7 +15,7 @@ def networkx_drawing_example(graph, img_path):
     fig.savefig(img_path)
 
 
-def simple_example(graph):
+def simple_example(graph, img_path):
     fig, ax = plt.subplots(figsize=(10, 10))
 
     ax = chord_diagram(graph, ax)
@@ -23,18 +23,18 @@ def simple_example(graph):
     ax.set_ylim(-1.5, 1.5)
     ax.set_title("A simple graph drawn better")
 
-    fig.savefig("images/1_simple_graph.png")
+    fig.savefig(img_path)
 
 
-def cells_network_example(graph):
+def cells_network_example(graph, img_path):
     fig, ax = plt.subplots(figsize=(10, 10))
     chord_diagram(graph, ax)
-    ax.set_title("Cells communication network")
+    ax.set_title(img_path)
 
     fig.savefig("images/2_cells_network.png")
 
 
-def not_circular_layout_example():
+def not_circular_layout_example(img_path):
     from drawing import draw_graph_edges
 
     graph = nx.Graph()
@@ -54,7 +54,28 @@ def not_circular_layout_example():
     ax = draw_graph_edges(graph, pos, ax)
     ax.set_title("Cells communication network")
 
-    fig.savefig("images/4_not_circular_layout.png")
+    fig.savefig(img_path)
+
+
+def cells_communication_graph():
+    cell_types = ("RPS expressing", "B", "CD4 T", "CD14 Monocytes", "NK",
+                  "CD8 T", "FCGR3A Monocytes", "Dendritic", "Megakaryocytes")
+    communication_network = np.array(
+        [
+            (1, 0, 1, 1, 1, 1, 1, 1, 0),
+            (1, 0, 1, 2, 1, 1, 2, 2, 0),
+            (0, 0, 1, 1, 1, 1, 1, 1, 0),
+            (0, 0, 0, 3, 0, 0, 3, 3, 0),
+            (1, 0, 1, 3, 1, 1, 3, 3, 0),
+            (0, 0, 0, 1, 0, 0, 1, 1, 0),
+            (0, 1, 0, 3, 0, 0, 3, 3, 1),
+            (0, 0, 0, 3, 0, 0, 3, 3, 0),
+            (0, 0, 0, 0, 0, 0, 0, 0, 1)
+        ]
+    )
+    df = pd.DataFrame(communication_network, index=cell_types, columns=cell_types)
+
+    return nx.DiGraph(df)
 
 
 if __name__ == "__main__":
@@ -71,29 +92,10 @@ if __name__ == "__main__":
     )
 
     networkx_drawing_example(graph, img_path="images/0_simple_graph_networkx.png")
-    simple_example(graph)
+    simple_example(graph, img_path="images/1_simple_graph.png")
 
-    cell_types = ("RPS expressing", "B", "CD4 T", "CD14 Monocytes", "NK",
-                  "CD8 T", "FCGR3A Monocytes", "Dendritic", "Megakaryocytes")
+    cells_communication_graph = cells_communications_graph()
 
-    communication_network = np.array(
-        [
-            (1, 0, 1, 1, 1, 1, 1, 1, 0),
-            (1, 0, 1, 2, 1, 1, 2, 2, 0),
-            (0, 0, 1, 1, 1, 1, 1, 1, 0),
-            (0, 0, 0, 3, 0, 0, 3, 3, 0),
-            (1, 0, 1, 3, 1, 1, 3, 3, 0),
-            (0, 0, 0, 1, 0, 0, 1, 1, 0),
-            (0, 1, 0, 3, 0, 0, 3, 3, 1),
-            (0, 0, 0, 3, 0, 0, 3, 3, 0),
-            (0, 0, 0, 0, 0, 0, 0, 0, 1)
-        ]
-    )
-
-    df = pd.DataFrame(communication_network, index=cell_types, columns=cell_types)
-    cells_communication_graph = nx.DiGraph(df)
-
+    cells_network_example(cells_communication_graph, img_path="Cells communication network")
     networkx_drawing_example(cells_communication_graph, img_path="images/3_nx_cells_network.png")
-
-    cells_network_example(cells_communication_graph)
-    not_circular_layout_example()
+    not_circular_layout_example(img_path="images/4_not_circular_layout.png")
