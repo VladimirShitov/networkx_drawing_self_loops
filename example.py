@@ -7,7 +7,7 @@ from drawing import chord_diagram
 
 
 def networkx_drawing_example(graph, img_path):
-    fig, ax = plt.subplots(figsize=(10, 10))
+    fig, ax = plt.subplots(figsize=(6, 6))
 
     nx.draw_circular(graph, ax=ax)
     ax.set_title("Graph drawn with networkx")
@@ -16,7 +16,7 @@ def networkx_drawing_example(graph, img_path):
 
 
 def simple_example(graph, img_path):
-    fig, ax = plt.subplots(figsize=(10, 10))
+    fig, ax = plt.subplots(figsize=(6, 6))
 
     ax = chord_diagram(graph, ax)
     ax.set_xlim(-1.5, 1.5)
@@ -27,7 +27,7 @@ def simple_example(graph, img_path):
 
 
 def cells_network_example(graph, img_path):
-    fig, ax = plt.subplots(figsize=(10, 10))
+    fig, ax = plt.subplots(figsize=(6, 6))
     chord_diagram(graph, ax)
     ax.set_title(img_path)
 
@@ -49,7 +49,7 @@ def not_circular_layout_example(img_path):
 
     pos = nx.kamada_kawai_layout(graph)
 
-    fig, ax = plt.subplots(figsize=(10, 10))
+    fig, ax = plt.subplots(figsize=(6, 6))
     nx.draw_networkx_nodes(graph, pos, ax=ax)
     ax = draw_graph_edges(graph, pos, ax)
     ax.set_title("Cells communication network")
