@@ -94,7 +94,7 @@ if __name__ == "__main__":
     networkx_drawing_example(graph, img_path="images/0_simple_graph_networkx.png")
     simple_example(graph, img_path="images/1_simple_graph.png")
 
-    cells_communication_graph = cells_communications_graph()
+    cells_communication_graph = cells_communication_graph()
 
     cells_network_example(cells_communication_graph, img_path="Cells communication network")
     networkx_drawing_example(cells_communication_graph, img_path="images/3_nx_cells_network.png")
