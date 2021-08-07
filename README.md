@@ -14,21 +14,21 @@ from drawing import chord_diagram  # Code from this repo
 
 # Create graph with some weights
 graph = nx.DiGraph(
-        np.array([
-            [1, 2, 1, 3, 5],
-            [1, 0, 3, 0, 0],
-            [1, 1, 3, 0, 1],
-            [0, 0, 2, 0, 1],
-            [1, 1, 1, 1, 1]
-        ])
-    )
+    np.array([
+        [1, 2, 1, 3, 5],
+        [1, 0, 3, 0, 0],
+        [1, 1, 3, 0, 1],
+        [0, 0, 2, 0, 1],
+        [1, 1, 1, 1, 1]
+    ])
+)
 
-    fig, ax = plt.subplots(figsize=(10, 10))
+fig, ax = plt.subplots(figsize=(10, 10))
 
-    nx.draw_circular(graph, ax=ax)
-    ax.set_title("Graph drawn with networkx")
+nx.draw_circular(graph, ax=ax)
+ax.set_title("Graph drawn with networkx")
 
-    fig.savefig("images/0_simple_graph_networkx.png")
+fig.savefig("images/0_simple_graph_networkx.png")
 ```
 
 ![Simple graph networkx](images/0_simple_graph_networkx.png)
@@ -38,12 +38,12 @@ Self-loops are drawn, but they are pretty ugly. When the graph gets bigger, it i
 ```python
 fig, ax = plt.subplots(figsize=(10, 10))
 
-    ax = chord_diagram(graph, ax)
-    ax.set_xlim(-1.5, 1.5)
-    ax.set_ylim(-1.5, 1.5)
-    ax.set_title("A simple graph drawn better")
+ax = chord_diagram(graph, ax)
+ax.set_xlim(-1.5, 1.5)
+ax.set_ylim(-1.5, 1.5)
+ax.set_title("A simple graph drawn better")
 
-    fig.savefig("images/1_simple_graph.png")
+fig.savefig("images/1_simple_graph.png")
 ```
 
 ![Simple graph](images/1_simple_graph.png)
